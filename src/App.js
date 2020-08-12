@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import { Admin, Resource } from 'react-admin';
+import closeSidebarSaga from './CloseSidebarSaga';
+import appSyncProvider from './appsync-provider';
+import {
+    TemplateList,
+    TemplateEdit,
+    TemplateCreate,
+    TemplateIcon,
+} from './templates';
+import englishMessages from 'ra-language-english';
+import frenchMessages from 'ra-language-french';
+import polyglotI18nProvider from 'ra-i18n-polyglot';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const i18nProvider = polyglotI18nProvider(
+    locale => (locale === 'fr' ? frenchMessages : englishMessages),
+    'en',
+    {
+        allowMissing: true,
+    }
+);
+
+const App = () => (
+    <Admin
+        i18nProvider={i18nProvider}
+        customSagas={[closeSidebarSaga]}
+        dataProvider={appSyncProvider(false)}
+    >
+        <Resource
+            name="Templates"
+            list={TemplateList}
+            edit={TemplateEdit}
+            create={TemplateCreate}
+            icon={TemplateIcon}
+        />
+    </Admin>
+);
 
 export default App;
