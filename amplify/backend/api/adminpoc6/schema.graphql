@@ -1,0 +1,11 @@
+ type Template @model {
+  id: ID!
+  site: String!
+  facility: String
+  serviceMode: String
+  welcome: String
+  preop: String
+  intra: String
+  pacu: String
+  done: String
+}

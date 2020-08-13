@@ -50,11 +50,11 @@ export const TemplateList = props => (
             <TextField source="site" />
             <TextField source="facility" />
             <TextField source="serviceMode" />
-            <EllipField source="welcome" />
-            <EllipField source="preop" />
-            <EllipField source="intra" />
-            <EllipField source="pacu" />
-            <EllipField source="done" />
+            <EllipField sortable={false} source="welcome" />
+            <EllipField sortable={false} source="preop" />
+            <EllipField sortable={false} source="intra" />
+            <EllipField sortable={false} source="pacu" />
+            <EllipField sortable={false} source="done" />
             <NumberField disabled source="_version" />
             <DateField disabled showTime source="_lastChangedAt" />
             <EditButton basePath="/templates" />
